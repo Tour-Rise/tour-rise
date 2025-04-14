@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour Rise - 予約の手作業を自動化。もっとツアーに集中しよう</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3A9AB2;
+      --secondary: #1D3C4E;
+      --accent: #F5A623;
+      --light: #F7FBFC;
+      --gray: #EAEFF2;
+      --dark-gray: #637381;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .bg-primary { background-color: var(--primary); }
+    .bg-secondary { background-color: var(--secondary); }
+    .bg-accent { background-color: var(--accent); }
+    .bg-light { background-color: var(--light); }
+    .bg-gray { background-color: var(--gray); }
+    
+    .text-primary { color: var(--primary); }
+    .text-secondary { color: var(--secondary); }
+    .text-accent { color: var(--accent); }
+    .text-dark-gray { color: var(--dark-gray); }
+    
+    .border-primary { border-color: var(--primary); }
+    .border-secondary { border-color: var(--secondary); }
+    .border-gray { border-color: var(--gray); }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2d8a9f;
+    }
+    
+    .btn-outline {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--gray);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .check-icon {
+      width: 24px;
+      height: 24px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+    
+    .small-check {
+      width: 20px;
+      height: 20px;
+      font-size: 0.65rem;
+    }
+    
+    .nav-link {
+      color: var(--dark-gray);
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <!-- ナビゲーションバー -->
+  <header class="bg-white shadow-sm fixed w-full z-10">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center">
+        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-2">
+          <svg width="24" height="24" viewBox="0 0 120 120" class="fill-current text-white">
+            <path d="M60 30 L90 60 L80 60 L60 40 L40 60 L30 60 Z" />
+            <path d="M60 50 L80 70 L70 70 L60 60 L50 70 L40 70 Z" />
+          </svg>
+        </div>
+        <span class="font-bold text-xl text-secondary">Tour Rise</span>
+      </div>
+      <nav class="desktop-nav">
+        <ul class="flex space-x-8 items-center">
+          <li><a href="#features" class="nav-link">特徴</a></li>
+          <li><a href="#testimonials" class="nav-link">お客様の声</a></li>
+          <li><a href="#pricing" class="nav-link">料金</a></li>
+          <li><a href="#faq" class="nav-link">よくある質問</a></li>
+          <li><a href="#contact" class="nav-link">お問い合わせ</a></li>
+          <li><a href="application.html" class="btn btn-primary">お申し込み</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu focus:outline-none">
+        <i class="fas fa-bars text-gray-500 text-xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ヒーローセクション -->
+  <section class="pt-24 pb-16 bg-gradient-to-b from-white to-light">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <h1 class="text-4xl md:text-5xl font-bold text-secondary leading-tight mb-4">
+          予約の手作業を自動化。<br>
+          <span class="text-primary">もっとツアーに集中</span>しよう
+        </h1>
+        <p class="text-lg text-dark-gray mb-8 max-w-lg">
+          小～中規模のツアーガイド会社向けに、Gmail・LINE・Googleカレンダーを連携し、予約管理の手間を劇的に削減します。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="application.html" class="btn btn-primary">
+            今すぐお申し込み <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+          <a href="#pricing" class="btn btn-outline">
+            料金プランを見る
+          </a>
+        </div>
+      </div>
+      <div class="md:w-1/2">
+        <div class="relative">
+          <div class="card p-6">
+            <div class="flex items-center mb-4">
+              <div class="w-3 h-3 bg-red-400 rounded-full mr-2"></div>
+              <div class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></div>
+              <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+              <div class="ml-4 text-sm text-dark-gray">Gmail - 予約通知</div>
+            </div>
+            <div class="border-t border-gray pt-4">
+              <div class="bg-gray rounded-md p-3 mb-3">
+                <span class="text-sm text-dark-gray">From: TripAdvisor Experiences &lt;tripadviser-bookings@exp.com&gt;</span>
+                <h4 class="font-medium">新規予約: 名古屋半日ツアー (予約番号: TR78921)</h4>
+              </div>
+              <div class="bg-primary bg-opacity-10 rounded-md p-3 border-l-4 border-primary">
+                <div class="flex items-start">
+                  <div class="check-icon small-check">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-primary">自動解析完了</p>
+                    <p class="text-xs text-dark-gray">スプレッドシートに保存しました</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -right-4 -bottom-4 card p-4">
+            <div class="flex items-center space-x-2 mb-2">
+              <div class="check-icon small-check">
+                <i class="fas fa-comment"></i>
+              </div>
+              <span class="text-sm font-medium">LINE通知</span>
+            </div>
+            <p class="text-xs text-dark-gray mb-2">新規予約が入りました</p>
+            <div class="flex space-x-2">
+              <button class="bg-primary text-white text-xs px-2 py-1 rounded">承認</button>
+              <button class="bg-gray text-dark-gray text-xs px-2 py-1 rounded">却下</button>
+            </div>
+          </div>
+          <div class="absolute -left-4 -bottom-8 card p-3">
+            <div class="flex items-center space-x-2">
+              <div class="check-icon small-check bg-green-500">
+                <i class="fas fa-calendar"></i>
+              </div>
+              <span class="text-xs font-medium">Googleカレンダーに追加しました</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3ステップセクション -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-12">
+        Tour Riseなら、予約管理の手間が<span class="text-primary">たった3ステップ</span>に
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card p-6 relative hover:shadow-md">
+          <div class="absolute -top-4 -left-4 step-number">1</div>
+          <div class="feature-icon text-primary">
+            <i class="fas fa-envelope fa-lg"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-secondary">予約メールが届く</h3>
+          <p class="text-dark-gray">複数の予約サイトから届くメールを自動で検知します</p>
+        </div>
+        
+        <div class="card p-6 relative hover:shadow-md">
+          <div class="absolute -top-4 -left-4 step-number">2</div>
+          <div class="feature-icon text-primary">
+            <i class="fas fa-comment fa-lg"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-secondary">文面は自動生成されLINEで通知</h3>
+          <p class="text-dark-gray">人数別料金やリンクも自動調整され、ガイドに即時通知</p>
+        </div>
+        
+        <div class="card p-6 relative hover:shadow-md">
+          <div class="absolute -top-4 -left-4 step-number">3</div>
+          <div class="feature-icon text-primary">
+            <i class="fas fa-calendar fa-lg"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-secondary">LINEで返信するだけで自動登録</h3>
+          <p class="text-dark-gray">Googleカレンダーに予約が自動登録され、管理が楽に</p>
+        </div>
+      </div>
+      
+      <div class="mt-10 flex flex-col items-center">
+        <div class="bg-light rounded-lg p-4 max-w-xl border border-gray">
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <div class="check-icon">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="font-medium">もう予約データの手入力は不要</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="font-medium">文面書き換えやレビューリンクの手動貼り付けも不要</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="font-medium">GmailやGoogleカレンダーなど、既存ツールだけで運用可能</p>
+            </li>
+          </ul>
+          <p class="text-center italic mt-4 text-primary font-medium">
+            「手作業による転記ミスとサヨナラ。ツアーの質を高める時間へ」
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声 -->
+  <section id="testimonials" class="py-16 bg-light">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-2">お客様の声</h2>
+      <p class="text-center text-dark-gray mb-12 max-w-2xl mx-auto">
+        Tour Riseは多くのツアー事業者様に導入いただき、業務効率化に貢献しています
+      </p>
+      <div class="card p-8 max-w-3xl mx-auto relative">
+        <div class="absolute -top-4 left-8 bg-accent text-white font-bold px-4 py-1 rounded-full text-sm">
+          外注コストを85％減らせました！
+        </div>
+        <p class="italic text-dark-gray mb-6">
+          「元から現場に立つのは大好きだけど、事務作業が苦手で。複数サイトからの予約を手作業で入力し、LINEで連絡し…という作業に嫌気がさして、この作業のためだけに外注さんに依頼するほどでした。でもTour Riseに切り替えるだけで、ほぼ自動化されました。人数に応じた文面やコースに合わせたリンクも自動で調整されるので、ストレスが激減！ガイドさんへの連絡も楽になり、お客様の直前確認メールやレビュー依頼も忘れなくなりました。何より、ツアーの内容改善に時間を使えるようになったのが一番嬉しいです」
+        </p>
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-gray rounded-full mr-4"></div>
+          <div>
+            <p class="font-medium">Nagoya Tours 様</p>
+            <p class="text-sm text-dark-gray">導入から6ヶ月</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特徴セクション -->
+  <section id="features" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-3">なぜ「Tour Rise」を選ぶのか？</h2>
+      <p class="text-center text-dark-gray mb-12 max-w-2xl mx-auto">
+        小・中規模に向けた「余計な機能は省き、本当に必要な自動化だけ」を実現
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- 特徴1 -->
+        <div class="card p-6 hover:shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="feature-icon">
+              <i class="fas fa-file-alt text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-secondary">普段使っているツールだけで完結する自動化</h3>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">新しいシステムの操作を覚える必要なし - Gmail、LINE、Googleカレンダーという既存ツールをそのまま活用</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">TripAdvisor、Klook、GetYourGuideなどからの予約メールを自動解析してスプレッドシートに転記</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">初期設定さえすれば、あとは完全自動で予約情報を一元管理</p>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 特徴2 -->
+        <div class="card p-6 hover:shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="feature-icon">
+              <i class="fas fa-comment text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-secondary">「文面の書き換え」から解放</h3>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">予約確認、ガイド依頼、レビュー依頼などシーンごとの定型文を自動生成</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">人数に応じた料金表示や特記事項も自動反映されるので手動書き換えが不要</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">コピペや書き換え作業から解放され、本来のツアー品質向上に時間を使える</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">確定した予約はGoogleカレンダーに自動登録され、ダブルブッキングを防止</p>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 特徴3 -->
+        <div class="card p-6 hover:shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-secondary">セキュリティ対策も万全</h3>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">データはGoogleの安全なインフラ上で管理され、通信は暗号化</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">予約情報は適切なアクセス制限の下で保護</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">必要最低限の情報のみを扱い、情報漏洩リスクを最小化</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p class="text-sm text-dark-gray">Google OAuthによる安全な認証で、セキュアなデータアクセスを実現</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <p class="text-center mt-10 text-dark-gray italic">
+        複雑な予約システムとは違い、日々の作業をラクにすることだけに特化しました
+      </p>
+    </div>
+  </section>
+
+  <!-- 料金プラン -->
+  <section id="pricing" class="py-16 bg-light">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-12">料金プラン</h2>
+      <div class="max-w-md mx-auto card overflow-hidden">
+        <div class="bg-primary text-white p-6 text-center">
+          <h3 class="text-2xl font-bold mb-1">シンプルな料金体系</h3>
+          <p class="opacity-80">サービスを提供しています</p>
+        </div>
+        <div class="p-6">
+          <div class="text-center mb-8">
+            <p class="text-sm text-dark-gray mb-1">月額</p>
+            <p class="text-4xl font-bold text-secondary mb-1">1,480<span class="text-xl">円</span></p>
+            <p class="text-dark-gray text-sm">（税込）</p>
+          </div>
+          <div class="bg-light p-4 rounded-md mb-6">
+            <p class="font-medium text-center mb-2">初期設定費用</p>
+            <p class="text-2xl font-bold text-center text-secondary">15,000<span class="text-base">円（税込）</span></p>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p>最低利用期間なし</p>
+            </li>
+            <li class="flex items-start">
+              <div class="check-icon small-check">
+                <i class="fas fa-check"></i>
+              </div>
+              <p>いつでも解約OK</p>
+            </li>
+          </ul>
+          <a href="application.html" class="btn btn-primary block text-center">
+            お申し込み
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 利用の流れ -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-12">ご利用の流れ</h2>
+      <div class="max-w-3xl mx-auto">
+        <div class="relative">
+          <!-- ステップ1 -->
+          <div class="flex mb-8 relative">
+            <div class="flex-shrink-0 w-12 mr-4">
+              <div class="step-number">1</div>
+              <div class="h-full w-0.5 bg-primary bg-opacity-30 absolute left-4 top-8 ml-3.5"></div>
+            </div>
+            <div class="bg-light p-4 rounded-lg shadow-sm border border-gray flex-grow">
+              <p class="font-medium">ご契約</p>
+            </div>
+          </div>
+          
+          <!-- ステップ2 -->
+          <div class="flex mb-8 relative">
+            <div class="flex-shrink-0 w-12 mr-4">
+              <div class="step-number">2</div>
+              <div class="h-full w-0.5 bg-primary bg-opacity-30 absolute left-4 top-8 ml-3.5"></div>
+            </div>
+            <div class="bg-light p-4 rounded-lg shadow-sm border border-gray flex-grow">
+              <p class="font-medium">ヒアリング（現状の予約対応と必要な文章などをお伺い）</p>
+            </div>
+          </div>
+          
+          <!-- ステップ3 -->
+          <div class="flex mb-8 relative">
+            <div class="flex-shrink-0 w-12 mr-4">
+              <div class="step-number">3</div>
+              <div class="h-full w-0.5 bg-primary bg-opacity-30 absolute left-4 top-8 ml-3.5"></div>
+            </div>
+            <div class="bg-light p-4 rounded-lg shadow-sm border border-gray flex-grow">
+              <p class="font-medium">初期設定（Zoomサポートあり）</p>
+            </div>
+          </div>
+          
+          <!-- ステップ4 -->
+          <div class="flex mb-8 relative">
+            <div class="flex-shrink-0 w-12 mr-4">
+              <div class="step-number">4</div>
+            </div>
+            <div class="bg-light p-4 rounded-lg shadow-sm border border-gray flex-grow">
+              <p class="font-medium">自動化開始！予約管理がラクに</p>
+            </div>
+          </div>
+        </div>
+        <p class="text-sm text-dark-gray italic bg-light p-4 rounded-lg border border-gray">
+          ※初期設定後1ヶ月以内であれば、2回まで無料で修正対応いたします。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tour Riseの自動化フロー -->
+  <section class="py-16 bg-light">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold text-center text-secondary mb-4">Tour Riseの自動化フロー</h1>
+      <p class="text-center text-dark-gray mb-12 max-w-2xl mx-auto">
+        予約管理を自動化する2ステップのプロセス
+      </p>
+      
+      <!-- STEP 1 -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold text-center text-primary mb-8">STEP 1: 予約受信と自動通知</h2>
+        
+        <div class="flex flex-wrap justify-center gap-8 mb-12">
+          <!-- Gmail -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
+              <i class="fas fa-envelope text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">Gmail</p>
+            <p class="text-sm text-dark-gray text-center">予約メールの受信</p>
+          </div>
+          
+          <!-- GAS -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
+              <i class="fas fa-code text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">Google Apps Script</p>
+            <p class="text-sm text-dark-gray text-center">メール内容の自動解析</p>
+          </div>
+          
+          <!-- Spreadsheet -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
+              <i class="fas fa-table text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">スプレッドシート</p>
+            <p class="text-sm text-dark-gray text-center">予約データの保存</p>
+          </div>
+          
+          <!-- LINE -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</div>
+              <i class="fab fa-line text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">LINE</p>
+            <p class="text-sm text-dark-gray text-center">ガイドへの自動通知</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- STEP 2 -->
+      <div>
+        <h2 class="text-2xl font-bold text-center text-primary mb-8">STEP 2: ガイド確認と自動登録</h2>
+        
+        <div class="flex flex-wrap justify-center gap-8">
+          <!-- LINE返信 -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
+              <i class="fab fa-line text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">LINE返信</p>
+            <p class="text-sm text-dark-gray text-center">ガイドが承認/却下</p>
+          </div>
+          
+          <!-- Make -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
+              <i class="fas fa-cogs text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">Make</p>
+            <p class="text-sm text-dark-gray text-center">Webhook受信</p>
+          </div>
+          
+          <!-- Spreadsheet -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
+              <i class="fas fa-table text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">スプレッドシート</p>
+            <p class="text-sm text-dark-gray text-center">ステータス更新</p>
+          </div>
+          
+          <!-- GAS -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</div>
+              <i class="fas fa-code text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">Google Apps Script</p>
+            <p class="text-sm text-dark-gray text-center">カレンダー連携</p>
+          </div>
+          
+          <!-- Calendar -->
+          <div class="flex flex-col items-center w-40">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">5</div>
+              <i class="fas fa-calendar-alt text-primary text-3xl"></i>
+            </div>
+            <p class="font-medium text-center">Googleカレンダー</p>
+            <p class="text-sm text-dark-gray text-center">予約の自動登録</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tour Riseの実際の流れ -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-12">Tour Riseの実際の流れ</h2>
+      
+      <!-- 画像フロー (横並び) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <!-- Gmail -->
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold z-10">1</div>
+          <div class="card p-4 h-full">
+            <img src="gmail-example.png" alt="予約メールの例" class="w-full h-40 object-cover rounded mb-4">
+            <h4 class="font-medium text-center mb-1">Gmail で予約メールを受信</h4>
+            <p class="text-sm text-dark-gray text-center">予約メールをGmailで受信し、自動で読み取ります</p>
+          </div>
+        </div>
+        
+        <!-- Google Sheets -->
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold z-10">2</div>
+          <div class="card p-4 h-full">
+            <img src="sheet-example.png" alt="予約スプレッドシートの例" class="w-full h-40 object-cover rounded mb-4">
+            <h4 class="font-medium text-center mb-1">スプレッドシートに自動記録</h4>
+            <p class="text-sm text-dark-gray text-center">予約情報は自動で転記・整理されます</p>
+          </div>
+        </div>
+        
+        <!-- LINE通知 -->
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold z-10">3</div>
+          <div class="card p-4 h-full">
+            <img src="line-example.png" alt="LINE通知の例" class="w-full h-40 object-cover rounded mb-4">
+            <h4 class="font-medium text-center mb-1">ガイドにLINEで通知</h4>
+            <p class="text-sm text-dark-gray text-center">予約内容がLINEで自動送信されます</p>
+          </div>
+        </div>
+        
+        <!-- Google カレンダー登録 -->
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold z-10">4</div>
+          <div class="card p-4 h-full">
+            <img src="calendar-example.png" alt="Googleカレンダーの例" class="w-full h-40 object-cover rounded mb-4">
+            <h4 class="font-medium text-center mb-1">カレンダーに自動登録</h4>
+            <p class="text-sm text-dark-gray text-center">予約がカレンダーに自動で追加されます</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- セキュリティ説明 -->
+      <div class="bg-primary bg-opacity-5 border-l-4 border-primary p-6 rounded-r-lg max-w-4xl mx-auto">
+        <h3 class="flex items-center text-xl font-bold text-secondary mb-4">
+          <i class="fas fa-shield-alt text-primary text-2xl mr-4"></i>
+          安心のGoogle連携
+        </h3>
+        <p class="text-dark-gray leading-relaxed">
+          Tour Riseでは、Gmail・スプレッドシート・カレンダーとの連携に、GoogleのOAuth認証を利用しています。
+          お客様のGoogleアカウントと連携する際には、明確な許可をいただいた上で必要最小限のデータのみを扱い、
+          業務効率とセキュリティを両立しています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google連携 -->
+  <section class="py-16 bg-light">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-8">Googleアカウント連携について</h2>
+      <div class="max-w-3xl mx-auto card p-6">
+        <p class="mb-4">
+          Tour Riseは以下のGoogle APIを利用して、予約管理を自動化します：
+        </p>
+        <ul class="space-y-4 mb-6">
+          <li class="flex items-start">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div>
+              <p class="font-medium">Gmail API</p>
+              <p class="text-sm text-dark-gray">予約メールの読み取りのみに使用（メール送信や削除は行いません）</p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div>
+              <p class="font-medium">Google Sheets API</p>
+              <p class="text-sm text-dark-gray">予約情報の記録や管理のために使用</p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div>
+              <p class="font-medium">Google Calendar API</p>
+              <p class="text-sm text-dark-gray">確定した予約をカレンダーに登録するために使用</p>
+            </div>
+          </li>
+        </ul>
+        <p class="text-dark-gray">
+          これらのAPIへのアクセス権限をいただくことで、手動作業を自動化し、業務効率を大幅に改善します。お客様のデータは予約管理の目的以外には使用せず、厳重に保護します。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくある質問 -->
+  <section id="faq" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-12">よくある質問</h2>
+      <div class="max-w-3xl mx-auto">
+        <!-- 質問1 -->
+        <div class="mb-4 border border-gray rounded-lg overflow-hidden">
+          <div class="bg-light p-4 font-medium flex justify-between items-center">
+            <p>Q: 既存のGoogleアカウントで使えますか？</p>
+          </div>
+          <div class="p-4 bg-white">
+            <p>A: はい、Google Workspaceを契約していない無料のGoogleアカウントでもご利用いただけます。</p>
+          </div>
+        </div>
+        
+        <!-- 質問2 -->
+        <div class="mb-4 border border-gray rounded-lg overflow-hidden">
+          <div class="bg-light p-4 font-medium flex justify-between items-center">
+            <p>Q: 対応している予約プラットフォームは？</p>
+          </div>
+          <div class="p-4 bg-white">
+            <p>A: TripAdvisor、Klook、GetYourGuideなど主要な予約プラットフォームに対応しています。その他のプラットフォームについても、多くの場合対応可能です。詳細はお問い合わせください。</p>
+          </div>
+        </div>
+        
+        <!-- 質問3 -->
+        <div class="mb-4 border border-gray rounded-lg overflow-hidden">
+          <div class="bg-light p-4 font-medium flex justify-between items-center">
+            <p>Q: 解約するとデータはどうなりますか？</p>
+          </div>
+          <div class="p-4 bg-white">
+            <p>A: 解約時にはシステムへのアクセスが停止されますが、それまでに蓄積されたデータはGoogleスプレッドシート上に残ります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section id="contact" class="py-16 bg-light">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-secondary mb-4">お問い合わせ</h2>
+      <p class="text-center text-dark-gray mb-8">
+        サービスに関するご質問やご相談は、お気軽にメールでお問い合わせください。<br>
+        48時間以内に返信いたします。
+      </p>
+      <div class="flex justify-center mb-6">
+        <a href="mailto:info@tour-rise.com" class="flex items-center bg-white px-6 py-3 rounded-md border border-gray shadow-sm hover:shadow-md transition-all">
+          <i class="fas fa-envelope text-primary mr-2"></i>
+          <span class="font-medium">info@tour-rise.com</span>
+        </a>
+      </div>
+      <p class="text-center text-sm text-dark-gray">
+        ※ご契約後のサポートは <a href="mailto:support@tour-rise.com" class="text-primary hover:underline">support@tour-rise.com</a> にご連絡ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-secondary text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+        <div class="flex items-center mb-6 md:mb-0">
+          <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-2">
+            <svg width="24" height="24" viewBox="0 0 120 120" class="fill-current text-white">
+              <path d="M60 30 L90 60 L80 60 L60 40 L40 60 L30 60 Z" />
+              <path d="M60 50 L80 70 L70 70 L60 60 L50 70 L40 70 Z" />
+            </svg>
+          </div>
+          <span class="font-bold text-xl">Tour Rise</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="#features" class="text-white opacity-80 hover:opacity-100 transition-opacity">特徴</a>
+          <a href="#testimonials" class="text-white opacity-80 hover:opacity-100 transition-opacity">お客様の声</a>
+          <a href="#pricing" class="text-white opacity-80 hover:opacity-100 transition-opacity">料金</a>
+          <a href="#faq" class="text-white opacity-80 hover:opacity-100 transition-opacity">よくある質問</a>
+          <a href="#contact" class="text-white opacity-80 hover:opacity-100 transition-opacity">お問い合わせ</a>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <h3 class="font-medium mb-2">運営情報</h3>
+            <p class="text-sm opacity-80">Tour Rise（ツアーライズ）</p>
+            <p class="text-sm opacity-80">運営：坂口葉子</p>
+            <p class="text-sm opacity-80">所在地：愛知県刈谷市中山町1-42-1</p>
+          </div>
+          <div class="flex flex-col items-center md:items-end">
+            <div class="flex gap-4 mb-4">
+              <a href="terms.html" class="text-white opacity-80 hover:opacity-100 transition-opacity text-sm">利用規約</a>
+              <a href="privacy.html" class="text-white opacity-80 hover:opacity-100 transition-opacity text-sm">プライバシーポリシー</a>
+            </div>
+            <p class="text-sm opacity-60">© 2025 Tour Rise All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // シンプルなモバイルメニュートグル
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.querySelector('.mobile-menu');
+      
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+          // ここにモバイルメニューを表示する処理を追加
+          alert('モバイルメニューがクリックされました。実装時にはドロップダウンメニューを表示します。');
+        });
+      }
+      
+      // スムーススクロール
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80, // ヘッダーの高さを考慮
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

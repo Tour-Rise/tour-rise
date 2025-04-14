@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お申し込み - Tour Rise</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3A9AB2;
+      --secondary: #1D3C4E;
+      --accent: #F5A623;
+      --light: #F7FBFC;
+      --gray: #EAEFF2;
+      --dark-gray: #637381;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .bg-primary { background-color: var(--primary); }
+    .bg-secondary { background-color: var(--secondary); }
+    .bg-accent { background-color: var(--accent); }
+    .bg-light { background-color: var(--light); }
+    .bg-gray { background-color: var(--gray); }
+    
+    .text-primary { color: var(--primary); }
+    .text-secondary { color: var(--secondary); }
+    .text-accent { color: var(--accent); }
+    .text-dark-gray { color: var(--dark-gray); }
+    
+    .border-primary { border-color: var(--primary); }
+    .border-secondary { border-color: var(--secondary); }
+    .border-gray { border-color: var(--gray); }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2d8a9f;
+    }
+    
+    .nav-link {
+      color: var(--dark-gray);
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--gray);
+      border-radius: 0.375rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(58, 154, 178, 0.1);
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--secondary);
+    }
+    
+    .required::after {
+      content: "*";
+      color: #e53e3e;
+      margin-left: 0.25rem;
+    }
+  </style>
+</head>
+<body class="antialiased bg-light">
+  <!-- ナビゲーションバー -->
+  <header class="bg-white shadow-sm fixed w-full z-10">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="index.html" class="flex items-center">
+          <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-2">
+            <svg width="24" height="24" viewBox="0 0 120 120" class="fill-current text-white">
+              <path d="M60 30 L90 60 L80 60 L60 40 L40 60 L30 60 Z" />
+              <path d="M60 50 L80 70 L70 70 L60 60 L50 70 L40 70 Z" />
+            </svg>
+          </div>
+          <span class="font-bold text-xl text-secondary">Tour Rise</span>
+        </a>
+      </div>
+      <nav class="desktop-nav">
+        <ul class="flex space-x-8 items-center">
+          <li><a href="index.html#features" class="nav-link">特徴</a></li>
+          <li><a href="index.html#testimonials" class="nav-link">お客様の声</a></li>
+          <li><a href="index.html#pricing" class="nav-link">料金</a></li>
+          <li><a href="index.html#faq" class="nav-link">よくある質問</a></li>
+          <li><a href="index.html#contact" class="nav-link">お問い合わせ</a></li>
+          <li><a href="application.html" class="btn btn-primary">お申し込み</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu focus:outline-none">
+        <i class="fas fa-bars text-gray-500 text-xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="container mx-auto px-4 py-24">
+    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-sm p-8">
+      <h1 class="text-3xl font-bold text-secondary mb-6 text-center">Tour Rise お申し込みフォーム</h1>
+      <p class="text-dark-gray mb-8 text-center">
+        以下のフォームに必要事項をご入力の上、送信ボタンをクリックしてください。<br>
+        48時間以内に担当者よりご連絡いたします。
+      </p>
+      
+      <form id="application-form" class="space-y-6">
+        <!-- 会社・団体情報 -->
+        <div class="bg-light p-4 rounded-md mb-6">
+          <h2 class="text-xl font-bold text-secondary mb-4">会社・団体情報</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="company-name" class="form-label required">会社・団体名</label>
+              <input type="text" id="company-name" name="company-name" class="form-input" required>
+            </div>
+            
+            <div>
+              <label for="business-type" class="form-label required">業種</label>
+              <select id="business-type" name="business-type" class="form-input" required>
+                <option value="">選択してください</option>
+                <option value="tour-operator">ツアーオペレーター</option>
+                <option value="travel-agency">旅行代理店</option>
+                <option value="guide-service">ガイドサービス</option>
+                <option value="activity-provider">アクティビティ提供者</option>
+                <option value="other">その他</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <label for="website" class="form-label">ウェブサイト（お持ちの場合）</label>
+            <input type="url" id="website" name="website" class="form-input" placeholder="https://example.com">
+          </div>
+        </div>
+        
+        <!-- 担当者情報 -->
+        <div class="bg-light p-4 rounded-md mb-6">
+          <h2 class="text-xl font-bold text-secondary mb-4">担当者情報</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="contact-name" class="form-label required">お名前</label>
+              <input type="text" id="contact-name" name="contact-name" class="form-input" required>
+            </div>
+            
+            <div>
+              <label for="contact-position" class="form-label">役職</label>
+              <input type="text" id="contact-position" name="contact-position" class="form-input">
+            </div>
+            
+            <div>
+              <label for="contact-email" class="form-label required">メールアドレス</label>
+              <input type="email" id="contact-email" name="contact-email" class="form-input" required>
+            </div>
+            
+            <div>
+              <label for="contact-phone" class="form-label required">電話番号</label>
+              <input type="tel" id="contact-phone" name="contact-phone" class="form-input" required>
+            </div>
+          </div>
+        </div>
+        
+        <!-- サービス利用情報 -->
+        <div class="bg-light p-4 rounded-md mb-6">
+          <h2 class="text-xl font-bold text-secondary mb-4">サービス利用情報</h2>
+          
+          <div class="mb-4">
+            <label for="tour-count" class="form-label required">月間予約件数（概算）</label>
+            <select id="tour-count" name="tour-count" class="form-input" required>
+              <option value="">選択してください</option>
+              <option value="1-10">1〜10件</option>
+              <option value="11-30">11〜30件</option>
+              <option value="31-50">31〜50件</option>
+              <option value="51-100">51〜100件</option>
+              <option value="100+">100件以上</option>
+            </select>
+          </div>
+          
+          <div class="mb-4">
+            <label for="booking-platforms" class="form-label required">利用している予約プラットフォーム（複数選択可）</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+              <div class="flex items-center">
+                <input type="checkbox" id="platform-tripadvisor" name="booking-platforms[]" value="tripadvisor" class="mr-2">
+                <label for="platform-tripadvisor">TripAdvisor</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="platform-klook" name="booking-platforms[]" value="klook" class="mr-2">
+                <label for="platform-klook">Klook</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="platform-getyourguide" name="booking-platforms[]" value="getyourguide" class="mr-2">
+                <label for="platform-getyourguide">GetYourGuide</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="platform-viator" name="booking-platforms[]" value="viator" class="mr-2">
+                <label for="platform-viator">Viator</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="platform-airbnb" name="booking-platforms[]" value="airbnb" class="mr-2">
+                <label for="platform-airbnb">Airbnb Experiences</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="platform-other" name="booking-platforms[]" value="other" class="mr-2">
+                <label for="platform-other">その他</label>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <label for="current-management" class="form-label required">現在の予約管理方法</label>
+            <textarea id="current-management" name="current-management" rows="3" class="form-input" required placeholder="例：Excelで手動管理、専用の予約システムを利用中 など"></textarea>
+          </div>
+        </div>
+        
+        <!-- その他 -->
+        <div class="bg-light p-4 rounded-md mb-6">
+          <h2 class="text-xl font-bold text-secondary mb-4">その他</h2>
+          
+          <div class="mb-4">
+            <label for="questions" class="form-label">ご質問・ご要望など</label>
+            <textarea id="questions" name="questions" rows="4" class="form-input" placeholder="ご不明点やご要望がございましたら、こちらにご記入ください。"></textarea>
+          </div>
+          
+          <div class="flex items-start mt-4">
+            <input type="checkbox" id="agree-terms" name="agree-terms" class="mt-1 mr-2" required>
+            <label for="agree-terms" class="text-sm">
+              <a href="terms.html" class="text-primary hover:underline" target="_blank">利用規約</a>および<a href="privacy.html" class="text-primary hover:underline" target="_blank">プライバシーポリシー</a>に同意します。
+            </label>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary px-8 py-3">
+            お申し込みを送信する
+          </button>
+        </div>
+      </form>
+      
+      <div class="mt-8 text-center text-sm text-dark-gray">
+        <p>お申し込み後、48時間以内に担当者よりご連絡いたします。</p>
+        <p>ご不明点は <a href="mailto:info@tour-rise.com" class="text-primary hover:underline">info@tour-rise.com</a> までお問い合わせください。</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-secondary text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+        <div class="flex items-center mb-6 md:mb-0">
+          <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-2">
+            <svg width="24" height="24" viewBox="0 0 120 120" class="fill-current text-white">
+              <path d="M60 30 L90 60 L80 60 L60 40 L40 60 L30 60 Z" />
+              <path d="M60 50 L80 70 L70 70 L60 60 L50 70 L40 70 Z" />
+            </svg>
+          </div>
+          <span class="font-bold text-xl">Tour Rise</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="index.html#features" class="text-white opacity-80 hover:opacity-100 transition-opacity">特徴</a>
+          <a href="index.html#testimonials" class="text-white opacity-80 hover:opacity-100 transition-opacity">お客様の声</a>
+          <a href="index.html#pricing" class="text-white opacity-80 hover:opacity-100 transition-opacity">料金</a>
+          <a href="index.html#faq" class="text-white opacity-80 hover:opacity-100 transition-opacity">よくある質問</a>
+          <a href="index.html#contact" class="text-white opacity-80 hover:opacity-100 transition-opacity">お問い合わせ</a>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <h3 class="font-medium mb-2">運営情報</h3>
+            <p class="text-sm opacity-80">Tour Rise（ツアーライズ）</p>
+            <p class="text-sm opacity-80">運営：坂口葉子</p>
+            <p class="text-sm opacity-80">所在地：愛知県刈谷市中山町1-42-1</p>
+          </div>
+          <div class="flex flex-col items-center md:items-end">
+            <div class="flex gap-4 mb-4">
+              <a href="terms.html" class="text-white opacity-80 hover:opacity-100 transition-opacity text-sm">利用規約</a>
+              <a href="privacy.html" class="text-white opacity-80 hover:opacity-100 transition-opacity text-sm">プライバシーポリシー</a>
+            </div>
+            <p class="text-sm opacity-60">© 2025 Tour Rise All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // シンプルなモバイルメニュートグル
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.querySelector('.mobile-menu');
+      
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+          // ここにモバイルメニューを表示する処理を追加
+          alert('モバイルメニューがクリックされました。実装時にはドロップダウンメニューを表示します。');
+        });
+      }
+      
+      // フォーム送信処理
+      const form = document.getElementById('application-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('お申し込みありがとうございます。実際のサイトでは、ここでフォームデータが送信されます。48時間以内に担当者よりご連絡いたします。');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

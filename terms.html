@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>利用規約 - Tour Rise</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3A9AB2;
+      --secondary: #1D3C4E;
+      --accent: #F5A623;
+      --light: #F7FBFC;
+      --gray: #EAEFF2;
+      --dark-gray: #637381;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .bg-primary { background-color: var(--primary); }
+    .bg-secondary { background-color: var(--secondary); }
+    .bg-accent { background-color: var(--accent); }
+    .bg-light { background-color: var(--light); }
+    .bg-gray { background-color: var(--gray); }
+    
+    .text-primary { color: var(--primary); }
+    .text-secondary { color: var(--secondary); }
+    .text-accent { color: var(--accent); }
+    .text-dark-gray { color: var(--dark-gray); }
+    
+    .border-primary { border-color: var(--primary); }
+    .border-secondary { border-color: var(--secondary); }
+    .border-gray { border-color: var(--gray); }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2d8a9f;
+    }
+    
+    .nav-link {
+      color: var(--dark-gray);
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased bg-light">
+  <!-- ナビゲーションバー -->
+  <header class="bg-white shadow-sm fixed w-full z-10">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="index.html" class="flex items-center">
+          <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-2">
+            <svg width="24" height="24" viewBox="0 0 120 120" class="fill-current text-white">
+              <path d="M60 30 L90 60 L80 60 L60 40 L40 60 L30 60 Z" />
+              <path d="M60 50 L80 70 L70 70 L60 60 L50 70 L40 70 Z" />
+            </svg>
+          </div>
+          <span class="font-bold text-xl text-secondary">Tour Rise</span>
+        </a>
+      </div>
+      <nav class="desktop-nav">
+        <ul class="flex space-x-8 items-center">
+          <li><a href="index.html#features" class="nav-link">特徴</a></li>
+          <li><a href="index.html#testimonials" class="nav-link">お客様の声</a></li>
+          <li><a href="index.html#pricing" class="nav-link">料金</a></li>
+          <li><a href="index.html#faq" class="nav-link">よくある質問</a></li>
+          <li><a href="index.html#contact" class="nav-link">お問い合わせ</a></li>
+          <li><a href="application.html" class="btn btn-primary">お申し込み</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu focus:outline-none">
+        <i class="fas fa-bars text-gray-500 text-xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="container mx-auto px-4 py-24">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-8">
+      <h1 class="text-3xl font-bold text-secondary mb-8">Tour Rise 利用規約</h1>
+      
+      <div class="prose max-w-none">
+        <p>本利用規約（以下「本規約」といいます）は、坂口葉子（以下「当社」といいます）が提供するサービス「Tour Rise」（以下「本サービス」といいます）の利用条件を定めるものです。本サービスをご利用いただくにあたっては、本規約にご同意いただく必要があります。</p>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第1条（定義）</h2>
+        <p>本規約における用語の定義は、以下の通りとします。</p>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>「ユーザー」とは、本規約に同意の上、本サービスを利用する個人または法人をいいます。</li>
+          <li>「本サービス」とは、当社が提供する「Tour Rise」と称するツアー予約管理自動化サービスをいいます。</li>
+          <li>「Gmail」「Google Calendar」「Google スプレッドシート」とは、Google LLC およびその関連会社が提供するサービスをいいます。</li>
+          <li>「LINE」とは、LINE株式会社が提供するメッセージングサービスをいいます。</li>
+          <li>「予約情報」とは、ユーザーが受信する顧客の予約に関するデータをいいます。</li>
+          <li>「連携サービス」とは、本サービスと連携するGmailやGoogle Calendar、LINEなどの外部サービスをいいます。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第2条（適用範囲）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>本規約は、本サービスの提供条件および本サービスの利用に関する当社とユーザーとの間の権利義務関係を定めることを目的とし、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されます。</li>
+          <li>当社が本サービスの円滑な運用を図るために、別途ガイドライン、ポリシー等を定めた場合、これらも本規約の一部を構成するものとします。</li>
+          <li>ユーザーが本サービスを利用した時点で、本規約に同意したものとみなします。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第3条（サービス内容）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>本サービスは、ユーザーが受信したツアー予約関連のメールを自動解析し、スプレッドシートへの転記、LINEでの通知、およびGoogleカレンダーへの登録を自動化するサービスです。</li>
+          <li>本サービスの具体的な機能は以下の通りです：
+            <ul class="list-disc pl-6 my-2">
+              <li>Gmail上の予約メールの自動解析</li>
+              <li>予約情報のスプレッドシートへの自動転記</li>
+              <li>LINE通知による予約情報の共有</li>
+              <li>ガイド確認後のGoogleカレンダーへの登録</li>
+            </ul>
+          </li>
+          <li>本サービスは、メール本文に予約情報が記載されている予約プラットフォーム（TripAdvisor、Klook、GetYourGuideなど）からの予約を処理対象としますが、手動でメールを送信することで他の形式の予約情報も処理可能です。</li>
+          <li>当社は、本サービスの機能の追加、変更、削除等を行うことができるものとします。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第4条（アカウント・ログイン）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>本サービスの利用開始にあたり、ユーザーはGoogleアカウントを使用して認証を行う必要があります。</li>
+          <li>ユーザーは、Google OAuthの認証プロセスを通じて、当社に以下のスコープへのアクセス権を付与することに同意するものとします：
+            <ul class="list-disc pl-6 my-2">
+              <li>Gmail API (gmail.readonly): 予約メールの読み取りのみに使用</li>
+              <li>Google Sheets API (spreadsheets): 予約情報の記録・管理に使用</li>
+              <li>Google Calendar API (calendar.events): 確定した予約をGoogleカレンダーに登録するために使用</li>
+            </ul>
+          </li>
+          <li>ユーザーは、連携サービスのアカウント情報の管理責任を負うものとし、不正アクセスや情報漏洩が発生した場合は速やかに当社に通知するものとします。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第5条（利用料金・支払い）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>本サービスの利用料金は以下の通りとします：
+            <ul class="list-disc pl-6 my-2">
+              <li>初期設定費用: 15,000円（税込）</li>
+              <li>月額利用料: 1,480円（税込）</li>
+            </ul>
+          </li>
+          <li>利用料金は、当社指定の方法により、前払いでお支払いいただきます。</li>
+          <li>支払い期日から7日経過後も支払いが確認できない場合、当社はユーザーに通知の上、通知から14日経過後にサービスを停止することができます。</li>
+          <li>停止後30日以内に支払いが確認できた場合はサービスを再開します。それ以降は契約を解除することがあります。</li>
+          <li>一度支払われた利用料金は、当社の責めに帰すべき事由がある場合を除き、返金されません。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第6条（解約・退会）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>ユーザーは、次回更新日の14日前までに当社指定のメールアドレス（support@tour-rise.com）に解約の旨を通知することにより、本サービスを解約することができます。</li>
+          <li>期限までに解約の通知がない場合、契約は自動的に更新され、次月分の利用料金が発生します。</li>
+          <li>解約後も、解約時点までにスプレッドシートに蓄積されたデータは、ユーザーが引き続き利用できます。ただし、自動データ更新や通知機能などのサービス機能は停止します。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第7条（知的財産権）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>本サービスに関する知的財産権は、すべて当社または当社にライセンスを許諾している者に帰属します。</li>
+          <li>ユーザーは、本サービスを通じて生成されたデータ（予約情報の転記結果など）について、非独占的な利用権を有します。</li>
+          <li>ユーザーは、当社の書面による事前の承諾なく、本サービスの複製、改変、リバースエンジニアリング等を行うことはできません。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第8条（禁止事項）</h2>
+        <p>ユーザーは、本サービスの利用にあたり、以下の行為を行ってはならないものとします：</p>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>法令または公序良俗に違反する行為</li>
+          <li>犯罪に関連する行為</li>
+          <li>当社または第三者の知的財産権、肖像権、プライバシー、名誉、その他の権利または利益を侵害する行為</li>
+          <li>本サービスのネットワークまたはシステム等に過度な負荷をかける行為</li>
+          <li>本サービスの運営を妨害する行為</li>
+          <li>不正アクセスまたは不正アクセスを試みる行為</li>
+          <li>他のユーザーのアカウントを利用する行為</li>
+          <li>当社が許諾しない本サービス上での宣伝、広告、勧誘、または営業行為</li>
+          <li>反社会的勢力等への利益供与</li>
+          <li>その他、当社が不適切と判断する行為</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第9条（サービスの提供停止・中断）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>当社は、以下の事由に該当する場合、本サービスの全部または一部の提供を停止または中断することができるものとします：
+            <ul class="list-disc pl-6 my-2">
+              <li>本サービスに係るシステムの保守点検または更新を行う場合</li>
+              <li>地震、落雷、火災、停電、天災、ウイルスやサイバー攻撃等の不可抗力により、本サービスの提供が困難となった場合</li>
+              <li>その他、当社が本サービスの提供が困難と判断した場合</li>
+            </ul>
+          </li>
+          <li>当社は、本サービスの提供の停止または中断により、ユーザーまたは第三者に生じた損害について、当社の故意または重過失による場合を除き、一切の責任を負わないものとします。</li>
+          <li>計画的なメンテナンスは原則3日前までに通知します。ただし、緊急性の高い場合は事前の予告なく実施することがあります。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第10条（サービスレベル）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>当社は、月間稼働率95%を目標として本サービスの安定的な運用に努めます。ただし、この稼働率は保証されるものではありません。</li>
+          <li>システム障害などの緊急時のサポート対応時間は、平日10時〜16時（日本時間）とします。</li>
+          <li>本サービスに関するお問い合わせは、48時間以内に返信することを目標としています。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第11条（データの取り扱い）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>ユーザーは、本サービスを通じて処理されるデータのバックアップについて、自己の責任において実施するものとします。</li>
+          <li>当社は、本サービスの安定稼働に努めますが、システム障害によるデータ損失については責任を負いかねます。ユーザーご自身での定期的なバックアップをお勧めします。</li>
+          <li>当社は、サービス改善の目的で、個人を特定しない形で統計データを収集・分析することがあります。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第12条（免責事項）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>当社は、本サービスに事実上または法律上の瑕疵（安全性、信頼性、正確性、完全性、有効性、特定の目的への適合性、セキュリティなどに関する欠陥、エラーやバグ、権利侵害などを含みます）がないことを明示的にも黙示的にも保証しておりません。</li>
+          <li>当社は、本サービスに起因してユーザーに生じたあらゆる損害について、当社の故意または重過失による場合を除き、一切の責任を負いません。</li>
+          <li>当社は、ユーザーと第三者との間で生じた取引、連絡、紛争等について一切責任を負いません。</li>
+          <li>連携サービス（Gmail、Google Calendar、LINE等）のシステム障害や仕様変更により本サービスが正常に機能しない場合、当社はその責任を負いません。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第13条（個人情報の取り扱い）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>当社は、ユーザーの個人情報について、「プライバシーポリシー」に従って適正に取り扱います。</li>
+          <li>ユーザーは、本サービスを通じて取得・処理する顧客の個人情報について、適用される個人情報保護法その他の法令を遵守する責任を負います。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第14条（本規約の変更）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>当社は、必要と判断した場合には、ユーザーに通知することなく、本規約を変更することができるものとします。</li>
+          <li>当社は、本規約の変更後、ユーザーが本サービスを利用した場合または当社の定める期間内に解約の手続きをとらなかった場合、ユーザーは本規約の変更に同意したものとみなします。</li>
+          <li>ユーザーは、定期的に当社ウェブサイトを確認し、本規約の変更の有無およびその内容について確認するものとします。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第15条（通知または連絡）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>ユーザーと当社との間の通知または連絡は、当社の定める方法によって行うものとします。</li>
+          <li>当社が登録事項に含まれるメールアドレスその他の連絡先に連絡または通知を行った場合、ユーザーは当該連絡または通知を受領したものとみなします。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第16条（権利義務の譲渡の禁止）</h2>
+        <p>ユーザーは、当社の書面による事前の承諾なく、本規約上の地位または本規約に基づく権利もしくは義務を第三者に譲渡し、または担保に供することはできません。</p>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">第17条（準拠法・裁判管轄）</h2>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>本規約の解釈にあたっては、日本法を準拠法とします。</li>
+          <li>本サービスに関して紛争が生じた場合には、名古屋地方裁判所を第一審の専属的合意管轄裁判所とします。</li>
+        </ol>
+
+        <hr class="my-8 border-gray">
+
+        <p class="mt-8">2025年4月14日 制定</p>
+        <p>運営者：坂口葉子<br>
+        所在地：愛知県刈谷市中山町1-42-1<br>
+        メールアドレス：info@tour-rise.com</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-secondary text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+        <div class="flex items-center mb-6 md:mb-0">
+          <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-2">
+            <svg width="24" height="24" viewBox="0 0 120 120" class="fill-current text-white">
+              <path d="M60 30 L90 60 L80 60 L60 40 L40 60 L30 60 Z" />
+              <path d="M60 50 L80 70 L70 70 L60 60 L50 70 L40 70 Z" />
+            </svg>
+          </div>
+          <span class="font-bold text-xl">Tour Rise</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="index.html#features" class="text-white opacity-80 hover:opacity-100 transition-opacity">特徴</a>
+          <a href="index.html#testimonials" class="text-white opacity-80 hover:opacity-100 transition-opacity">お客様の声</a>
+          <a href="index.html#pricing" class="text-white opacity-80 hover:opacity-100 transition-opacity">料金</a>
+          <a href="index.html#faq" class="text-white opacity-80 hover:opacity-100 transition-opacity">よくある質問</a>
+          <a href="index.html#contact" class="text-white opacity-80 hover:opacity-100 transition-opacity">お問い合わせ</a>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <h3 class="font-medium mb-2">運営情報</h3>
+            <p class="text-sm opacity-80">Tour Rise（ツアーライズ）</p>
+            <p class="text-sm opacity-80">運営：坂口葉子</p>
+            <p class="text-sm opacity-80">所在地：愛知県刈谷市中山町1-42-1</p>
+          </div>
+          <div class="flex flex-col items-center md:items-end">
+            <div class="flex gap-4 mb-4">
+              <a href="terms.html" class="text-white opacity-80 hover:opacity-100 transition-opacity text-sm">利用規約</a>
+              <a href="privacy.html" class="text-white opacity-80 hover:opacity-100 transition-opacity text-sm">プライバシーポリシー</a>
+            </div>
+            <p class="text-sm opacity-60">© 2025 Tour Rise All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // シンプルなモバイルメニュートグル
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.querySelector('.mobile-menu');
+      
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+          // ここにモバイルメニューを表示する処理を追加
+          alert('モバイルメニューがクリックされました。実装時にはドロップダウンメニューを表示します。');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
