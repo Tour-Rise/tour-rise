@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー - Tour Rise</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3A9AB2;
+      --secondary: #1D3C4E;
+      --accent: #F5A623;
+      --light: #F7FBFC;
+      --gray: #EAEFF2;
+      --dark-gray: #637381;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .bg-primary { background-color: var(--primary); }
+    .bg-secondary { background-color: var(--secondary); }
+    .bg-accent { background-color: var(--accent); }
+    .bg-light { background-color: var(--light); }
+    .bg-gray { background-color: var(--gray); }
+    
+    .text-primary { color: var(--primary); }
+    .text-secondary { color: var(--secondary); }
+    .text-accent { color: var(--accent); }
+    .text-dark-gray { color: var(--dark-gray); }
+    
+    .border-primary { border-color: var(--primary); }
+    .border-secondary { border-color: var(--secondary); }
+    .border-gray { border-color: var(--gray); }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2d8a9f;
+    }
+    
+    .nav-link {
+      color: var(--dark-gray);
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased bg-light">
+  <!-- ナビゲーションバー -->
+  <header class="bg-white shadow-sm fixed w-full z-10">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<div class="flex items-center">
+  <img src="logo2.png" alt="Tour Rise" class="h-10 mr-2">
+  <span class="font-bold text-xl text-secondary">Tour Rise</span>
+</div>
+
+      <nav class="desktop-nav">
+        <ul class="flex space-x-8 items-center">
+          <li><a href="index.html#testimonials" class="nav-link">お客様の声</a></li>
+          <li><a href="index.html#features" class="nav-link">特徴</a></li>
+          <li><a href="index.html#pricing" class="nav-link">料金</a></li>
+          <li><a href="index.html#faq" class="nav-link">よくある質問</a></li>
+          <li><a href="index.html#contact" class="nav-link">お問い合わせ</a></li>
+          <li><a href="application.html" class="btn btn-primary">お申し込み</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu focus:outline-none">
+        <i class="fas fa-bars text-gray-500 text-xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="container mx-auto px-4 py-24">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-8">
+      <h1 class="text-3xl font-bold text-secondary mb-8">Tour Rise プライバシーポリシー</h1>
+      
+      <div class="prose max-w-none">
+        <p>本プライバシーポリシーは、坂口葉子（以下「当社」といいます）が提供するサービス「Tour Rise」（以下「本サービス」といいます）における、ユーザーの個人情報およびその他の情報の取り扱いについて定めるものです。</p>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">1. 事業者情報</h2>
+        <ul class="list-disc pl-6 mb-6">
+          <li>事業者名：坂口葉子（個人事業主）</li>
+          <li>所在地：愛知県刈谷市中山町1-42-1</li>
+          <li>代表者：坂口葉子</li>
+          <li>メールアドレス：info@tour-rise.com</li>
+          <li>サポート用メールアドレス：support@tour-rise.com</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">2. 取得する情報と取得方法</h2>
+        <p>本サービスでは、以下の情報を取得します：</p>
+
+        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">2.1 ユーザー情報</h3>
+        <ul class="list-disc pl-6 mb-6">
+          <li>氏名（担当者名）</li>
+          <li>メールアドレス</li>
+          <li>所属する会社・団体名</li>
+          <li>支払い情報</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">2.2 Googleアカウント連携による情報</h3>
+        <p>本サービスでは、以下のGoogle APIを利用し、情報を取得します：</p>
+        <ul class="list-disc pl-6 mb-6">
+          <li><strong>Gmail API（gmail.readonly）</strong>： 予約メールの内容のみを読み取ります。メールの送信や削除は行いません。</li>
+          <li><strong>Google Sheets API（spreadsheets）</strong>： 予約情報を記録・管理するために使用します。</li>
+          <li><strong>Google Calendar API（calendar.events）</strong>： 確定した予約をカレンダーに登録するために使用します。</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">2.3 解析・取得する予約情報</h3>
+        <p>予約メールから以下の情報を抽出し処理します：</p>
+        <ul class="list-disc pl-6 mb-6">
+          <li>予約日</li>
+          <li>ツアーコース</li>
+          <li>待ち合わせ場所</li>
+          <li>ツアー開始時間</li>
+          <li>予約者情報（氏名、国、予約人数、予約番号、同行者名、メールアドレス、電話番号、年齢）</li>
+          <li>特記事項</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">3. 情報の利用目的</h2>
+        <p>当社は、取得した情報を以下の目的で利用します：</p>
+        <ol class="list-decimal pl-6 mb-6">
+          <li><strong>本サービスの提供・運営</strong>： 予約メールの自動解析、スプレッドシートへの転記、LINE通知、Googleカレンダー登録など</li>
+          <li><strong>カスタマーサポート</strong>： お問い合わせ対応、トラブル解決</li>
+          <li><strong>サービス改善</strong>： 機能の向上、バグ修正、ユーザビリティの改善</li>
+          <li><strong>お知らせの送信</strong>： サービスに関する重要なお知らせ、アップデート情報の提供</li>
+          <li><strong>利用料金の請求</strong>： サービス利用に関する請求処理</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">4. データの保管場所および保管期間</h2>
+        
+        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">4.1 保管場所</h3>
+        <p>ユーザーから取得する情報は、以下の場所に保管されます：</p>
+        <ul class="list-disc pl-6 mb-6">
+          <li>ユーザーのGoogleアカウントに紐づくGoogle Sheets上（予約情報）</li>
+          <li>ユーザーのGoogleアカウントに紐づくGoogleカレンダー上（予約日程）</li>
+          <li>ユーザーが連携したLINEアカウント上（通知履歴）</li>
+        </ul>
+        <p>当社自身のサーバーでは、ユーザーの予約情報を保管しません。</p>
+
+        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">4.2 保管期間</h3>
+        <p>ユーザー情報は、以下の期間保管します：</p>
+        <ul class="list-disc pl-6 mb-6">
+          <li>契約期間中：すべての情報を保管</li>
+          <li>契約終了後：契約管理に必要な最低限の情報（氏名、メールアドレス、契約履歴）のみを法定保存期間満了まで保管</li>
+        </ul>
+        <p>予約情報はユーザーのGoogleアカウント上に保管されるため、解約後もユーザーが自身でデータを管理・削除することができます。</p>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">5. 情報の第三者提供</h2>
+        <p>当社は、以下の場合を除き、取得した情報を第三者に提供することはありません：</p>
+        <ol class="list-decimal pl-6 mb-6">
+          <li>ユーザーの同意がある場合</li>
+          <li>法令に基づく場合</li>
+          <li>人の生命、身体または財産の保護のために必要がある場合であって、ユーザーの同意を得ることが困難である場合</li>
+          <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって、ユーザーの同意を得ることが困難である場合</li>
+          <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって、ユーザーの同意を得ることにより当該事務の遂行に支障を及ぼすおそれがある場合</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">6. 外部サービスとのデータ共有</h2>
+        <p>本サービスでは、以下の外部サービスと連携してデータを共有します：</p>
+
+        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">6.1 Google サービス</h3>
+        <ul class="list-disc pl-6 mb-6">
+          <li>Gmail、Google Sheets、Google Calendarとの連携を行い、OAuthでユーザーから明示的に許可を得た範囲内でのみデータを取得・処理します。</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">6.2 LINE</h3>
+        <ul class="list-disc pl-6 mb-6">
+          <li>LINEでの通知機能を提供するため、Make（旧Integromat）のWebhookを介してLINEと連携します。</li>
+          <li>LINEへは予約通知に必要な情報のみを送信します（予約日、ツアーコース、待ち合わせ場所、開始時間、予約者名、人数など）。</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">6.3 Make（旧Integromat）</h3>
+        <ul class="list-disc pl-6 mb-6">
+          <li>LINE連携のためのノーコード自動化プラットフォームとして利用します。</li>
+          <li>Makeを経由して、LINEからの返信内容（予約承認・却下など）を取得し、Google Sheetsに反映します。</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">7. データセキュリティ対策</h2>
+        <p>当社は、取得した情報の安全管理のために、以下の措置を講じています：</p>
+        <ol class="list-decimal pl-6 mb-6">
+          <li><strong>HTTPS/TLS通信の採用</strong>： Gmail API、Google Sheets API、Calendar API、LINE Messaging APIとの通信はすべてHTTPS経由で暗号化されます。</li>
+          <li><strong>アクセス権限の管理</strong>： ユーザーデータへのアクセスは、正当な業務目的を持つ限られた担当者のみに制限しています。</li>
+          <li><strong>最小限のデータ取得</strong>： 本サービスの提供に必要最小限の情報のみを取得・処理し、クレジットカード情報など機密性の高い情報は保存しないようにしています。</li>
+          <li><strong>OAuthによる認証連携</strong>： Google APIへのアクセスは、安全なOAuth認証を通じて行われ、必要最小限のスコープのみを要求します。</li>
+          <li><strong>ライブラリ化によるコード保護</strong>： サービスのコア機能はGASライブラリとして提供され、ソースコードへの不正アクセスを防止します。</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">8. ユーザーの権利と行使方法</h2>
+        <p>ユーザーは、本サービスに関する個人情報について、以下の権利を有しています：</p>
+        <ol class="list-decimal pl-6 mb-6">
+          <li><strong>個人情報の開示請求権</strong></li>
+          <li><strong>個人情報の訂正・追加・削除請求権</strong></li>
+          <li><strong>個人情報の利用停止・消去請求権</strong></li>
+          <li><strong>個人情報の第三者提供の停止請求権</strong></li>
+        </ol>
+        <p>これらの権利を行使する場合は、以下の連絡先までご連絡ください：</p>
+        <p>メールアドレス：info@tour-rise.com</p>
+        <p>当社は、ユーザーからの請求を受けた場合、法令に特別の定めがある場合を除き、速やかに対応します。ただし、ユーザー確認のため、必要な書類の提出をお願いする場合があります。</p>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">9. Cookieなどのトラッキング技術について</h2>
+        <p>本サービスでは、Cookieやトラッキング技術を積極的に使用していません。ただし、Google認証などの連携サービスの機能として、Cookieが使用される場合があります。</p>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">10. 子供のプライバシー</h2>
+        <p>本サービスは、16歳未満の子供を対象としておらず、故意に16歳未満の子供から個人情報を収集することはありません。</p>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">11. プライバシーポリシーの変更</h2>
+        <p>当社は、必要に応じて、本ポリシーを変更することがあります。変更された場合、本サービスのウェブサイト上に変更内容を掲載します。変更後も本サービスを継続して利用された場合、変更後のプライバシーポリシーに同意したものとみなします。</p>
+
+        <h2 class="text-2xl font-bold text-secondary mt-8 mb-4">12. お問い合わせ先</h2>
+        <p>本プライバシーポリシーに関するお問い合わせは、以下の連絡先までお願いします：</p>
+        <ul class="list-disc pl-6 mb-6">
+          <li>事業者名：坂口葉子</li>
+          <li>所在地：愛知県刈谷市中山町1-42-1</li>
+          <li>メールアドレス：info@tour-rise.com</li>
+        </ul>
+        <p>お問い合わせいただいた場合、48時間以内に返信することを目標としています。</p>
+
+        <hr class="my-8 border-gray">
+
+        <p class="mt-8">2025年4月14日 制定</p>
+        <p>運営者：坂口葉子<br>
+        所在地：愛知県刈谷市中山町1-42-1<br>
+        メールアドレス：info@tour-rise.com</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-secondary text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+<div class="flex items-center mb-6 md:mb-0">
+  <img src="logo2.png" alt="Tour Rise" class="h-10 mr-2">
+  <span class="font-bold text-xl">Tour Rise</span>
+</div>
+
+
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="index.html#features" class="text-white opacity-80 hover:opacity-100 transition-opacity">特徴</a>
+          <a href="index.html#testimonials" class="text-white opacity-80 hover:opacity-100 transition-opacity">お客様の声</a>
+          <a href="index.html#pricing" class="text-white opacity-80 hover:opacity-100 transition-opacity">料金</a>
+          <a href="index.html#faq" class="text-white opacity-80 hover:opacity-100 transition-opacity">よくある質問</a>
+          <a href="index.html#contact" class="text-white opacity-80 hover:opacity-100 transition-opacity">お問い合わせ</a>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <h3 class="font-medium mb-2">運営情報</h3>
+            <p class="text-sm opacity-80">Tour Rise（ツアーライズ）</p>
+            <p class="text-sm opacity-80">運営：坂口葉子</p>
+            <p class="text-sm opacity-80">所在地：愛知県刈谷市中山町1-42-1</p>
+          </div>
+          <div class="flex flex-col items-center md:items-end">
+            <div class="flex gap-4 mb-4">
+              <a href="terms.html" class="text-white opacity-80 hover:opacity-100 transition-opacity text-sm">利用規約</a>
+              <a href="privacy.html" class="text-white opacity-80 hover:opacity-100 transition-opacity text-sm">プライバシーポリシー</a>
+            </div>
+            <p class="text-sm opacity-60">© 2025 Tour Rise All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // シンプルなモバイルメニュートグル
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.querySelector('.mobile-menu');
+      
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+          // ここにモバイルメニューを表示する処理を追加
+          alert('モバイルメニューがクリックされました。実装時にはドロップダウンメニューを表示します。');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
