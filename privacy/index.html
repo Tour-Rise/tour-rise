@@ -134,13 +134,18 @@
           <li>支払い情報</li>
         </ul>
 
-        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">2.2 Googleアカウント連携による情報</h3>
-        <p>本サービスでは、以下のGoogle APIを利用し、情報を取得します：</p>
-        <ul class="list-disc pl-6 mb-6">
-          <li><strong>Gmail API（gmail.readonly）</strong>： 予約メールの内容のみを読み取ります。メールの送信や削除は行いません。</li>
-          <li><strong>Google Sheets API（spreadsheets）</strong>： 予約情報を記録・管理するために使用します。</li>
-          <li><strong>Google Calendar API（calendar.events）</strong>： 確定した予約をカレンダーに登録するために使用します。</li>
-        </ul>
+<h3 class="text-xl font-bold text-secondary mt-6 mb-3">2.2 Googleアカウント連携による情報</h3>
+<p>本サービスでは、以下のGoogle APIを利用し、情報を取得します：</p>
+<ul class="list-disc pl-6 mb-6">
+  <li><strong>Gmail API（gmail.modify）</strong>： 予約メールの内容を読み取るとともに、予約管理のためにメールに対してラベルの追加・削除などの変更操作を行います。なお、メール本文自体の編集や削除は行いません。</li>
+  <li><strong>Google Sheets API（spreadsheets）</strong>： 予約情報を記録・管理するために使用します。</li>
+  <li><strong>Google Calendar API（calendar.events）</strong>： 確定した予約をカレンダーに登録するために使用します。</li>
+</ul>
+<p class="text-base mb-6">
+  <strong>補足：</strong>
+  OAuthによる認証の際は、上記以外にも外部リクエスト（UrlFetchApp）やスクリプト管理（ScriptApp）などの権限を要求する場合がありますが、これらは予約情報の外部通知（LINE連携）や自動実行トリガー設定に使用するためのものであり、ユーザーの個人情報を第三者に無断で提供する目的では利用しません。
+</p>
+
 
         <h3 class="text-xl font-bold text-secondary mt-6 mb-3">2.3 解析・取得する予約情報</h3>
         <p>予約メールから以下の情報を抽出し処理します：</p>
@@ -218,7 +223,7 @@
           <li><strong>HTTPS/TLS通信の採用</strong>： Gmail API、Google Sheets API、Calendar API、LINE Messaging APIとの通信はすべてHTTPS経由で暗号化されます。</li>
           <li><strong>アクセス権限の管理</strong>： ユーザーデータへのアクセスは、正当な業務目的を持つ限られた担当者のみに制限しています。</li>
           <li><strong>最小限のデータ取得</strong>： 本サービスの提供に必要最小限の情報のみを取得・処理し、クレジットカード情報など機密性の高い情報は保存しないようにしています。</li>
-          <li><strong>OAuthによる認証連携</strong>： Google APIへのアクセスは、安全なOAuth認証を通じて行われ、必要最小限のスコープのみを要求します。</li>
+          <li><strong>OAuthによる認証連携</strong>： Google APIへのアクセスは、安全なOAuth認証を通じて行われ、必要最小限のスコープのみを要求します。特に、Gmail Modify スコープは予約メールの読み取りだけでなく、ラベルの追加・削除など予約管理のための変更操作に使用され、Google Sheets や Google Calendar への書き込みも同様に管理されています。また、本サービスは外部 API（LINE Messaging API など）へのHTTPS通信も実施しており、これらの処理に関しても最小限の権限を要求しています。</li>
           <li><strong>ライブラリ化によるコード保護</strong>： サービスのコア機能はGASライブラリとして提供され、ソースコードへの不正アクセスを防止します。</li>
         </ol>
 
